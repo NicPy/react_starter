@@ -3,7 +3,7 @@ import React from 'react'
 const charelement = (props) => {
     return (
         <div>
-            text block
+            <h2 onClick={props.click}> {props.content}</h2>
         </div>
     )
 }
