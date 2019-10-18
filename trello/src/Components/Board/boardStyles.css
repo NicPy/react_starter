@@ -1,0 +1,15 @@
+.board-container {
+    text-align: center;
+    width: 300px;
+    margin: 0px auto;
+    background: #f9f9f9;
+    box-shadow: black 0 0px 4px -1px;
+    border-radius: 5px;
+    padding: 15px 0;
+}
+
+.board-container  input[type="submit"] {
+    height: 0;
+    position: absolute;
+    z-index: -200;
+}
