@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 // import trello from './trello.png'
 import Logo from './Components/Header/Header';
-import List from './Components/Board/List';
+import Lists from './Components/Board/Lists';
 
 class App extends Component {
   
@@ -15,69 +15,86 @@ class App extends Component {
     lists: [
       {MARKER: "right1"}
     ],
-    value: ''
+    board_lists:[{
+      id:"1",
+      name: "first", 
+      cards:[
+        {id: "1", text: "test text" },
+        {id: "2", text: "petya" }
+      ]},
+      {
+        id:"2",
+        name: "second", 
+        cards:[
+          {id: "1", text: "Vasya" },
+          {id: "2", text: "Egor" }
+        ]},
+      {
+        id:"3",
+        name: "first", 
+        cards:[
+          {id: "1", text: "Borys" },
+          {id: "2", text: "petya" }
+        ]},
+      {
+        id:"4",
+        name: "second", 
+        cards:[
+          {id: "1", text: "Vasya" },
+          {id: "2", text: "Misha" }
+        ]}
+      
+    ],
+    value: {
+      text: '',
+      board_id: ''
+    }
 	}
 
   addItemHandler = (event) => {
     // console.log(this.state.value) ;
-    let oldItems = this.state.listItems;
-    oldItems.push({"text": this.state.value});
-    this.setState({listItems: oldItems})
+    // let oldItems = this.state.board_lists;
+    // oldItems.push({"text": this.state.value});
+    // this.setState({listItems: oldItems})
     this.setState({value: ''});
+    console.log();
     event.preventDefault();
   }
 
-  valueChanger = (event) => {
-    this.setState({value: event.target.value });
+  valueChanger = (event, board_id) => {
+    // this.setState({value: event.target.value });
+    console.log(board_id);
   }
 
   addList = (event) => {
     let oldLists = this.state.lists; 
     oldLists.push({"list":""});
     this.setState({lists: oldLists});
-    console.log(this.state.lists)
   }
 
   render() {
 
     let lists = (
-      <div> 
-        {this.state.lists.map(list => {
-        return(
-          <div>
-            <List 
-              submit={this.addItemHandler}
-              text={this.state.article}
-              items={this.state.listItems}
-              value={this.state.value}
-              change={this.valueChanger}/>
-              sASasAS
-            </div> 
-              )
-        })}
-      </div>
+      <div className="lists row">
+        <Lists
+          lists = {this.state.board_lists} 
+          submit={this.addItemHandler}
+          // text={this.state.article}
+          // items={this.state.listItems}
+          value={this.state.value}
+          change={this.valueChanger}/>
+      </div> 
     )
 
 
     return (
-      <div>
+      <div className="container">
         <Logo/>
 
-        <div className="App jumbotron">
-          <h2> Hey there</h2>
-          {/* <div><img src={trello}/></div> */}
-          <button className="btn btn-primary">Push me!</button>
-        </div>
-
         <button onClick={this.addList}>Add list</button>
-        <hr />
+
         {lists}
-        {/* <List 
-          submit={this.addItemHandler}
-          text={this.state.article}
-          items={this.state.listItems}
-          value={this.state.value}
-          change={this.valueChanger}/> */}
+
       </div>
     );
   }

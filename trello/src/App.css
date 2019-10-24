@@ -29,4 +29,7 @@
 
 .hidden {
   visibility: hidden;
+  position: absolute;
+  z-index: -2000;
+  height: 0;
 }

@@ -5,17 +5,21 @@ import Listitem from './ListItem'
 const list = (props) => {
 	
 	let list_items = (
-		<div>
+		<React.Fragment>
 			{props.items.map((item, index) => {
 				return(
-					<Listitem text={item.text}/>
+					<Listitem 
+					key={index}
+					text={item.text}/>
 				);
 			})}
-		</div>
+		</React.Fragment>
 	);
 
 	return(
-		<div className="board-container">
+		<div className=" col-lg-3 col-md-4 col-6">
+			<div className="list-item">
+				{console.log}
 			<form onSubmit={props.submit} >
 				<input
 					value={props.value}
@@ -28,6 +32,8 @@ const list = (props) => {
 					/>
 			</form>
 			{list_items}
+
+			</div>
 		</div>
 	)
 }
