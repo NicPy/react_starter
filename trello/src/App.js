@@ -32,30 +32,30 @@ class App extends Component {
     ],
     value: {
       text: "vasya",
-      board_id: ""
+      board_id: "",
+      focused_board: ""
     }
   };
 
   addItemHandler = event => {
-    // console.log(this.state.value) ;
-    // let oldItems = this.state.board_lists;
-    let current_list = this.state.board_lists.find(e => {
-      return e.id === this.state.value.board_id;
-    });
-
-    current_list.push();
-
-    this.setState();
-    console.log(current_list);
-    // oldItems.push({"text": this.state.value});
-    // this.setState({listItems: oldItems})
-    this.setState({ value: "" });
     event.preventDefault();
+    if (this.submited_id === this.state.value.id) {
+      // Copy current state to work with object
+      let old_state = Object.assign({}, this.state);
+
+      // find list, where changes has to be pushed
+      let current_list = old_state.board_lists.find(e => {
+        return e.id === this.state.value.board_id;
+      });
+      current_list.cards.push({ id: 14, text: this.state.value.text });
+
+      old_state.value.text = "";
+      this.setState(old_state);
+    }
   };
 
   valueChanger = (value, board_id) => {
     this.setState({ value: { text: value, board_id: board_id } });
-    console.log();
   };
 
   addList = event => {
@@ -70,8 +70,6 @@ class App extends Component {
         <Lists
           lists={this.state.board_lists}
           submit={this.addItemHandler}
-          // text={this.state.article}
-          // items={this.state.listItems}
           value={this.state.value}
           change={this.valueChanger}
         />

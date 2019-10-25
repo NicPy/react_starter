@@ -7,13 +7,13 @@ const lists = props => {
       {props.lists.map((list, index) => {
         let input_value =
           props.value.board_id === list.id ? props.value.text : "";
+
         return (
           <List
             id={list.id}
             key={index}
             items={list.cards}
             submit={props.submit}
-            // value = {props.value}
             value={input_value}
             change={props.change}
           />

@@ -14,7 +14,6 @@ const list = props => {
   return (
     <div className=" col-lg-3 col-md-4 col-6">
       <div className="list-item">
-        {/* {console.log} */}
         <form onSubmit={props.submit}>
           <input
             value={props.value}
@@ -23,6 +22,7 @@ const list = props => {
           />
           <input type="submit" className="hidden" />
         </form>
+
         {list_items}
       </div>
     </div>
