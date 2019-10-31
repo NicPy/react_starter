@@ -1,5 +1,6 @@
 import React from "react";
 import "./boardStyles.css";
+import "./boardStyles.scss";
 import Listitem from "./ListItem";
 
 const list = props => {
