@@ -37,6 +37,31 @@ class App extends Component {
     }
   };
 
+  addListHandler = () => {
+
+    // copy old state 
+    let oldList = Object.assign([], this.state.board_lists);
+
+    // Add an empty list
+    oldList.push({
+      id: Date.now(),
+      name: 'New list',
+      cards:[],
+    })
+
+    this.setState({board_lists: oldList});
+  }
+
+  deleteListHandler = (event, listId) => {
+
+    let old_state = Object.assign({}, this.state);
+
+    // remove element by ID  from board_lists
+    let new_state = old_state.board_lists.filter(function(el) { return el.id !== listId });
+
+    this.setState({board_lists: new_state})
+  }
+
   addItemHandler = event => {
     event.preventDefault();
     if (this.submited_id === this.state.value.id) {
@@ -58,12 +83,6 @@ class App extends Component {
     this.setState({ value: { text: value, board_id: board_id } });
   };
 
-  addList = event => {
-    let oldLists = this.state.lists;
-    oldLists.push({ list: "" });
-    this.setState({ lists: oldLists });
-  };
-
   render() {
     let lists = (
       <div className="lists row">
@@ -72,6 +91,7 @@ class App extends Component {
           submit={this.addItemHandler}
           value={this.state.value}
           change={this.valueChanger}
+          delete={this.deleteListHandler}
         />
       </div>
     );
@@ -79,8 +99,7 @@ class App extends Component {
     return (
       <div className="container">
         <Logo />
-
-        <button onClick={this.addList}>Add list</button>
+        <button onClick={this.addListHandler}>Add list</button>
 
         {lists}
       </div>

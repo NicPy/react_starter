@@ -16,6 +16,7 @@ const lists = props => {
             submit={props.submit}
             value={input_value}
             change={props.change}
+            delete={props.delete}
           />
         );
       })}
