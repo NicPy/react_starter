@@ -4,14 +4,42 @@
 }
 
 
-.list-item {
-	text-align: center;
+.list {
+	// text-align: center;
 	margin: 10px auto;
+
 	background: #f9f9f9;
 	box-shadow: black 0 0px 4px -1px;
 	border-radius: 5px;
-	padding: 15px 0;
-	
+	padding: 15px 5px;
+
+	.list-title {
+		font-weight: 100;
+		width: 100%;
+		text-align: center;
+		
+		.edit-icon {
+			max-width: 15px;
+			max-height: 15px;
+			visibility: hidden;
+			margin: -1px 5px 5px 5px;
+		}
+
+		&:hover {
+			cursor: pointer;
+			.edit-icon {
+				visibility: visible;
+			}
+		}
+	}
+
+	.list-item {
+		text-align: center;
+	}
+	form {
+		text-align: center;
+
+	}
 	input[type="submit"] {
 		height: 0;
 		position: absolute;

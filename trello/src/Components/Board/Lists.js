@@ -12,6 +12,7 @@ const lists = props => {
           <List
             id={list.id}
             key={index}
+            list_name = {list.name}
             items={list.cards}
             submit={props.submit}
             value={input_value}

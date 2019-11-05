@@ -37,6 +37,14 @@ class App extends Component {
     }
   };
 
+  componentDidMount(prevProps) {
+    this.setState(JSON.parse(localStorage.getItem('state_data')));    
+  }
+
+  componentDidUpdate(prevProps) {
+    localStorage.setItem('state_data', JSON.stringify(this.state))
+  }
+
   addListHandler = () => {
 
     // copy old state 
@@ -54,12 +62,14 @@ class App extends Component {
 
   deleteListHandler = (event, listId) => {
 
-    let old_state = Object.assign({}, this.state);
+    if (window.confirm("Are you sure?")){
+      let old_state = Object.assign({}, this.state);
 
-    // remove element by ID  from board_lists
-    let new_state = old_state.board_lists.filter(function(el) { return el.id !== listId });
-
-    this.setState({board_lists: new_state})
+      // remove element by ID  from board_lists
+      let new_state = old_state.board_lists.filter(function(el) { return el.id !== listId });
+  
+      this.setState({board_lists: new_state})
+    }
   }
 
   addItemHandler = event => {
@@ -97,7 +107,7 @@ class App extends Component {
     );
 
     return (
-      <div className="container">
+      <div className="container-fluid">
         <Logo />
         <button onClick={this.addListHandler}>Add list</button>
 

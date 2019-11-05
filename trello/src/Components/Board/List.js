@@ -19,11 +19,18 @@ const list = props => {
   return (
     <div className=" col-lg-3 col-md-4 col-6">
       
-      <div className="list-item">
-      <button 
-        className="btn btn-danger float-right"
-        onClick={e => props.delete(e, props.id)} 
-      >X</button>
+      <div className="list">
+        <span 
+          className="list-title">
+          {props.list_name}
+          <img src={require('../../Images/pencil.png')} className='edit-icon' alt="edit"/>
+        </span>
+        <button 
+          className="btn btn-danger float-right"
+          onClick={e => props.delete(e, props.id) }
+        >
+          X
+        </button>
         <form onSubmit={props.submit}>
           <input
             value={props.value}
