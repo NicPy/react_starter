@@ -27,6 +27,7 @@ const list = props => {
             resize="off"
             onChange={e => props.nameChange(e, props.id, e.target.value)}
             value={props.list_name} 
+            onKeyDown={e => {(e.key === 'Enter' || e.key === 'Escape') && e.target.blur()}}
             />
           
           <img src={require('../../Images/pencil.png')} className='edit-icon' alt="edit"/>
