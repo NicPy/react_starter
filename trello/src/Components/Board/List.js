@@ -2,6 +2,7 @@ import React from "react";
 import "./boardStyles.css";
 import "./boardStyles.scss";
 import Listitem from "./ListItem";
+import TextareaAutosize from 'react-textarea-autosize';
 
 const list = props => {
   let list_items = [];
@@ -22,7 +23,12 @@ const list = props => {
       <div className="list">
         <span 
           className="list-title">
-          {props.list_name}
+          <TextareaAutosize 
+            resize="off"
+            onChange={e => props.nameChange(e, props.id, e.target.value)}
+            value={props.list_name} 
+            />
+          
           <img src={require('../../Images/pencil.png')} className='edit-icon' alt="edit"/>
         </span>
         <button 

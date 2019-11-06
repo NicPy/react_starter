@@ -11,24 +11,19 @@ class App extends Component {
     board_lists: [
       {
         id: "1",
-        name: "first",
-        cards: [{ id: "1", text: "test text" }, { id: "2", text: "petya" }]
+        name: "To do",
+        cards: []
       },
       {
         id: "2",
-        name: "second",
-        cards: [{ id: "1", text: "Vasya" }, { id: "2", text: "Egor" }]
+        name: "In process",
+        cards: []
       },
       {
         id: "3",
-        name: "first",
-        cards: [{ id: "1", text: "Borys" }, { id: "2", text: "petya" }]
+        name: "Done",
+        cards: []
       },
-      {
-        id: "4",
-        name: "second",
-        cards: [{ id: "1", text: "Vasya" }, { id: "2", text: "Misha" }]
-      }
     ],
     value: {
       text: "vasya",
@@ -53,11 +48,28 @@ class App extends Component {
     // Add an empty list
     oldList.push({
       id: Date.now(),
-      name: 'New list',
+      name: 'New list lorem4 dsa f asdf asfd asdf asdf sd Lorem ipsum dolor sit amet, veritus mnesarchum conclusionemque nam te. Vel magna nominati persequeris ad, no quando fabellas oporteat vis. His iriure iracundia an. Usu no meis possim nostrud, mea ad odio elitr.',
       cards:[],
     })
 
     this.setState({board_lists: oldList});
+  }
+
+  listNameChangeHandler = (event, listId, nameValue) => {
+
+    let old_state = Object.assign({}, this.state);
+
+    // Find list where changes should be implemented
+    let used_list = old_state.board_lists.find(e => {
+      return e.id === listId;
+    });
+
+    // change list name
+    used_list.name = nameValue.replace(/\n/g, '');
+    // console.log(new_state);
+
+    // update state with new name
+    this.setState({board_lists: old_state.board_lists})
   }
 
   deleteListHandler = (event, listId) => {
@@ -102,6 +114,7 @@ class App extends Component {
           value={this.state.value}
           change={this.valueChanger}
           delete={this.deleteListHandler}
+          nameChange={this.listNameChangeHandler}
         />
       </div>
     );

@@ -18,6 +18,7 @@ const lists = props => {
             value={input_value}
             change={props.change}
             delete={props.delete}
+            nameChange = {props.nameChange}
           />
         );
       })}
